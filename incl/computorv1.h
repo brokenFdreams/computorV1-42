@@ -1,11 +1,11 @@
-#ifndef COMPUTORV_H
-# define COMPUTORV_H
+#ifndef COMPUTORV1_H
+# define COMPUTORV1_H
 
 # include "libft.h"
 
 typedef struct	s_value {
 	int 		value;
-	int			expression;
+	int			xdegree;
 	int			isbelongtox;
 }				t_value;
 
@@ -20,10 +20,10 @@ typedef struct	s_output {
 
 int 		validation(char* expression, t_value*** values);
 
-void		solution(t_value** values, t_output* output);
-
-void 		writer(t_output* output);
-
-void		free_memory(t_value*** values, t_output** output);
+//void		solution(t_value** values, t_output* output);
+//
+//void 		writer(t_output* output);
+//
+//void		free_memory(t_value*** values, t_output** output);
 
 #endif
