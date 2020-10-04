@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../incl/computorv1.h
+libft.h
+../incl/libft.h
+
+../libft/libft.h
+stdlib.h
+-
+unistd.h
+-
+string.h
+-
+stdint.h
+-
+
+/Users/alyakarma/bFd/comutorV1/src/computorv1.c
+computorv1.h
+/Users/alyakarma/bFd/comutorV1/src/computorv1.h
+
