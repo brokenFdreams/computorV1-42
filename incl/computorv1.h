@@ -3,11 +3,6 @@
 
 # include "libft.h"
 
-typedef struct	s_value {
-	int 		value;
-	int			xdegree;
-}				t_value;
-
 typedef struct	s_output {
 	char		*reducedform;
 	int 		max_degree;
@@ -17,7 +12,7 @@ typedef struct	s_output {
 	int 		second_solution;
 }				t_output;
 
-int 		validation(char* expression, t_value*** values);
+int 		validation(char* expression, int*** values);
 
 int         skip_spaces(const char* expression);
 
