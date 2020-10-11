@@ -22,8 +22,8 @@ static int validate_expression(char *expression) {
             countequals++;
         else if (!(ft_isdigit(*expression)) && *expression != ' ' &&
                  *expression != '-' && *expression != '+' &&
-                 *expression != '^' && *expression != 'x'
-                 && *expression != 'X')
+                 *expression != '^' && *expression != '*' &&
+                 *expression != 'x'&& *expression != 'X')
             return (0);
         expression++;
     }
