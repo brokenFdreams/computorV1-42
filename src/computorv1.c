@@ -8,21 +8,21 @@ static int	start_progress(char* expression) {
 	t_value		**values;
 	t_output	*output;
 
-	if (validation(expression, &values) == 1)
-		return (1);
+	if (!(validation(expression, &values)))
+		return (0);
 //	solution(values, output);
 //	writer(output);
 //	free_memory(&values, &output);
-	return (0);
+	return (1);
 }
 
 int			main(int argc, char** argv) {
     int    check;
 
-	check = 1;
+	check = 0;
 	if (argc == 2)
 		check = start_progress(argv[1]);
-	if (argc != 2 || check) {
+	if (argc != 2 || !(check)) {
 		ft_putendl("Usage: ./computor \"some reduce\"");
 		ft_putendl("Example: ./computor \"5 + 4 * X + X^2 = X^2\"");
 	}

@@ -6,7 +6,6 @@
 typedef struct	s_value {
 	int 		value;
 	int			xdegree;
-	int			isbelongtox;
 }				t_value;
 
 typedef struct	s_output {
@@ -19,6 +18,8 @@ typedef struct	s_output {
 }				t_output;
 
 int 		validation(char* expression, t_value*** values);
+
+int         skip_spaces(const char* expression);
 
 //void		solution(t_value** values, t_output* output);
 //
