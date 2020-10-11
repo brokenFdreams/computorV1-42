@@ -6,10 +6,10 @@
 typedef struct	s_output {
 	char		*reducedform;
 	int 		max_degree;
-	int 		discriminant_sign;
+    float 		discriminant_sign;
 	int 		numberofsolutions;
-	int 		first_solution;
-	int 		second_solution;
+	float 		first_solution;
+    float 		second_solution;
 }				t_output;
 
 int 		validation(char* expression, int*** values);

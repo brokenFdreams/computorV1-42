@@ -5,20 +5,21 @@
 #include "computorv1.h"
 
 //TODO set_argument
-static void set_argument(char *expression, t_value *value, int *i, int equal_sign) {
+static void set_argument(char *expression, int *value, int *i, int equal_sign) {
 
 }
 
-static int  set_arguments(char *expression, t_value **values) {
-
+static int  set_arguments(char *expression, int **values) {
+    expression += skip_spaces(expression);
+    if ()
 }
 
 static int  validate_expression(char *expression) {
     while (expression && *expression) {
-        if (!(ft_isdigit(*expression)) || *expression != ' ' ||
-            *expression != '-' || *expression != '+' ||
-            *expression != '=' || *expression != '^' ||
-            *expression != 'x' || *expression != 'X')
+        if (!(ft_isdigit(*expression)) && *expression != ' ' &&
+            *expression != '-' && *expression != '+' &&
+            *expression != '=' && *expression != '^' &&
+            *expression != 'x' && *expression != 'X')
             return (0);
         expression++;
     }
