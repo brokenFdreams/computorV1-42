@@ -73,13 +73,14 @@ static int get_next_operator(const char *expression, int i)
 	return (i);
 }
 
-static int set_arguments(char *expression, int *values)
+void	 set_arguments(char *expression, int **values)
 {
 	int start;
 	int end;
 	int len;
 	int value;
 
+	*values = (int *) ft_memalloc(sizeof(int) * 3);
 	len = ft_strlen(expression);
 	start = 0;
 	while (len > 0)
@@ -87,14 +88,7 @@ static int set_arguments(char *expression, int *values)
 		end = get_next_operator(expression, start);
 		len -= end - start;
 		value = get_value(expression, &start);
-		values[set_argument(expression, start, end)] += value;
+		(*values)[set_argument(expression, start, end)] += value;
 		start = end;
 	}
-}
-
-
-void set_values(char *expression, int **values)
-{
-	*values = (int *) ft_memalloc(sizeof(int) * 3);
-	set_arguments(expression, *values);
 }

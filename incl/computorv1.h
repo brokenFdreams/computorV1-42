@@ -11,7 +11,7 @@ typedef struct	s_output {
     float 		second_solution;
 }				t_output;
 
-void		set_values(char *expression, int **values);
+void		set_arguments(char *expression, int **values);
 
 void		remove_all_spaces(char *expression);
 void		ft_error(char *str);

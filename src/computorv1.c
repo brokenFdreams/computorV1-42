@@ -31,7 +31,7 @@ static int	start_progress(char* expression) {
 
 	remove_all_spaces(expression);
 	validation(expression);
-	set_values(expression, &values);
+	set_arguments(expression, &values);
 //	solution(values, output);
 //	writer(output);
 //	free_memory(&values, &output);
