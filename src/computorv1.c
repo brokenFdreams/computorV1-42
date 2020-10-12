@@ -4,18 +4,34 @@
 
 #include "computorv1.h"
 
+static void validation(char *expression)
+{
+	int countequals;
+
+	countequals = 0;
+	while (expression && *expression)
+	{
+		if (*expression == '=')
+			countequals++;
+		else if (!(ft_isdigit(*expression)) &&
+				 *expression != '-' && *expression != '+' &&
+				 *expression != '^' && *expression != '*' &&
+				 *expression != 'x' && *expression != 'X')
+			ft_error("There's some unexpected sign in expression");
+		expression++;
+	}
+	if (countequals > 1)
+		ft_error("There's more, then one =. I can't solve.");
+}
+
 static int	start_progress(char* expression) {
-	int		    **values;
+	int		    *values;
 	t_output	*output;
 	int         degree;
 
-	degree = validation(expression, &values);
-	if (degree == -1)
-		return (0);
-    if (degree > 2) {
-        ft_putendl("The polynomial degree is stricly greater than 2, I can't solve.");
-        return (degree);
-    }
+	remove_all_spaces(expression);
+	validation(expression);
+	set_values(expression, &values);
 //	solution(values, output);
 //	writer(output);
 //	free_memory(&values, &output);

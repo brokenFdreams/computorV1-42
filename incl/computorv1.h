@@ -4,17 +4,17 @@
 # include "libft.h"
 
 typedef struct	s_output {
-	char		*reducedform;
 	int 		max_degree;
-    float 		discriminant_sign;
+    float 		discriminant;
 	int 		numberofsolutions;
 	float 		first_solution;
     float 		second_solution;
 }				t_output;
 
-int 		validation(char* expression, int*** values);
+void		set_values(char *expression, int **values);
 
-int         skip_spaces(const char* expression);
+void		remove_all_spaces(char *expression);
+void		ft_error(char *str);
 
 //void		solution(t_value** values, t_output* output);
 //
