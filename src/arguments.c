@@ -4,15 +4,16 @@
 
 #include "computorv1.h"
 
-//TODO set_argument
-static int get_value(char *expression, int *start)
+static int get_value(char *expression, int *start, int wasequal)
 {
 	int value;
 	int sign;
 
 	sign = 1;
-	if (expression[*start] == '-' || expression[*start] == '=')
+	if (expression[*start] == '-')
 		sign = -1;
+	if (wasequal)
+		sign *= -1;
 	if (expression[*start] == '-' || expression[*start] == '+' ||
 		expression[*start] == '=')
 		(*start)++;
@@ -24,12 +25,14 @@ static int get_value(char *expression, int *start)
 	if (expression[*start] == '*' && ft_isdigit(expression[*start + 1]))
 	{
 		(*start)++;
-		value *= get_value(expression, start);
+		value *= get_value(expression, start, wasequal);
 	}
+	if (sign == -1 && value > -1)
+		return (value * sign);
 	return (value);
 }
 
-static int set_argument(char *expression, int start, int end)
+static int get_degree(char *expression, int start, int end)
 {
 	int degree;
 
@@ -43,13 +46,15 @@ static int set_argument(char *expression, int start, int end)
 		return (1);
 	if (expression[start] != '^')
 		ft_error("There's unexpected characters after 'x'.");
-	if (!(ft_isdigit(expression[++start])))
+	if (ft_isdigit(expression[++start]))
+		degree = ft_atoi(expression + start);
+	else if (expression[start] == '-' && ft_isdigit(expression[start + 1]))
+	{
+		degree = ft_atoi(expression + start);
+		start++;
+	}
+	else
 		ft_error("There's no digit after '^'.");
-	degree = ft_atoi(expression + start);
-	if (degree > 2)
-		ft_error("The polynomial degree is stricly greater than 2.");
-	if (degree < 0)
-		ft_error("The polynomial degree is stricly less than 0.");
 	while (ft_isdigit(expression[start]))
 		start++;
 	if (start != end)
@@ -57,8 +62,10 @@ static int set_argument(char *expression, int start, int end)
 	return (degree);
 }
 
-static int get_next_operator(const char *expression, int i)
+static int get_next_operator(const char *expression, int i, int *wasequal)
 {
+	if (expression[i] == '=')
+		*wasequal = 1;
 	if (expression[i] == '+' || expression[i] == '-' ||
 		expression[i] == '=')
 		i++;
@@ -73,22 +80,21 @@ static int get_next_operator(const char *expression, int i)
 	return (i);
 }
 
-void	 set_arguments(char *expression, int **values)
+void set_arguments(char *expression, int *values, int mindegree)
 {
 	int start;
 	int end;
-	int len;
+	int wasequal;
 	int value;
 
-	*values = (int *) ft_memalloc(sizeof(int) * 3);
-	len = ft_strlen(expression);
 	start = 0;
-	while (len > 0)
+	end = 0;
+	wasequal = 0;
+	while (expression[end])
 	{
-		end = get_next_operator(expression, start);
-		len -= end - start;
-		value = get_value(expression, &start);
-		(*values)[set_argument(expression, start, end)] += value;
+		end = get_next_operator(expression, start, &wasequal);
+		value = get_value(expression, &start, wasequal);
+		values[get_degree(expression, start, end) - mindegree] += value;
 		start = end;
 	}
 }

@@ -3,23 +3,30 @@
 
 # include "libft.h"
 
-typedef struct	s_output {
-	int 		max_degree;
-    float 		discriminant;
-	int 		numberofsolutions;
-	float 		first_solution;
-    float 		second_solution;
-}				t_output;
+typedef struct s_solution
+{
+	float discriminant;
+	int numberofsolutions;
+	float first_solution;
+	float second_solution;
+} t_solution;
 
-void		set_arguments(char *expression, int **values);
+void set_arguments(char *expression, int *values, int mindegree);
 
-void		remove_all_spaces(char *expression);
-void		ft_error(char *str);
+void resolution(int *values, t_solution *solution);
 
-//void		solution(t_value** values, t_output* output);
+void remove_all_spaces(char *expression);
+
+void write_reduced_form(int *values, int *degrees);
+
+void ft_error(char *str);
+
+void free_memory(int **values, t_solution **solution, int **degrees);
+
+//void		solution(t_value** values, t_solution* output);
 //
-//void 		writer(t_output* output);
+//void 		writer(t_solution* output);
 //
-//void		free_memory(t_value*** values, t_output** output);
+//void		free_memory(t_value*** values, t_solution** output);
 
 #endif
