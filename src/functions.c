@@ -46,7 +46,8 @@ void write_reduced_form(int *values, int *degrees)
 	}
 	ft_putendl(" = 0");
 	ft_putstr("Polynomial degree: ");
-	ft_putendl(ft_itoa(maxdegree));
+	ft_putnbr(maxdegree);
+	ft_putendl("");
 	if (maxdegree > 2)
 		ft_error("The polynomial degree is stricly greater than 2.");
 	else if (mindegree < 0)
