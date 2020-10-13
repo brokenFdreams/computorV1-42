@@ -36,7 +36,7 @@ void write_reduced_form(int *values, int *degrees)
 	degreecounter = degrees[0];
 	mindegree = 0;
 	maxdegree = 0;
-	while (degreecounter < degrees[1])
+	while (degreecounter <= degrees[1])
 	{
 		if (degreecounter < 0 && values[i] != 0)
 			mindegree = mindegree < degreecounter ? mindegree : degreecounter;
