@@ -24,7 +24,7 @@ static void validation(char *expression)
 		ft_error("There's more, then one =. I can't solve.");
 }
 
-static int	start_progress(char* expression) {
+static void	start_progress(char* expression) {
 	int		    *values;
 	t_output	*output;
 	int         degree;
@@ -39,13 +39,11 @@ static int	start_progress(char* expression) {
 }
 
 int			main(int argc, char** argv) {
-    int    check;
-
-	if (argc == 2)
-		check = start_progress(argv[1]);
-	if (argc != 2 || check == 0) {
+	if (argc != 2 || ft_strequ(argv[1], "-u")) {
 		ft_putendl("Usage: ./computor \"some reduce\"");
 		ft_putendl("Example: ./computor \"5*X^0+4*X^1+6*X^2=3*X^2\"");
 	}
-	return (0);
+	else
+        start_progress(argv[1]);
+    return (0);
 }
