@@ -35,7 +35,6 @@ static void	start_progress(char* expression) {
 //	solution(values, output);
 //	writer(output);
 //	free_memory(&values, &output);
-	return (1);
 }
 
 int			main(int argc, char** argv) {
