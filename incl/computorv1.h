@@ -2,6 +2,7 @@
 # define COMPUTORV1_H
 
 # include "libft.h"
+# include <stdio.h>
 
 typedef struct s_solution
 {
@@ -12,7 +13,7 @@ typedef struct s_solution
 } t_solution;
 
 void set_arguments(char *expression, int *values, int mindegree, int *degrees);
-void resolution(int *values, t_solution *solution);
+void resolution(int *values, int *degrees, t_solution *solution);
 
 void remove_all_spaces(char *expression);
 void write_reduced_form(int *values, int *degrees);

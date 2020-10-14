@@ -46,12 +46,10 @@ void write_reduced_form(int *values, int *degrees)
 	ft_putstr(" = 0 \nPolynomial degree: ");
 	ft_putnbr(maxdegree);
 	ft_putendl("");
-	if (maxdegree > 2)
-		ft_error_f("The polynomial degree is stricly greater than 2.",
-			 &values, &degrees);
-	else if (mindegree < 0)
+	if (mindegree < 0)
 		ft_error_f("Expression contains negative x degree.",
 			 &values, &degrees);
+	degrees[1] = maxdegree;
 }
 
 void remove_all_spaces(char *expression)
