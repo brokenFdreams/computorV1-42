@@ -82,10 +82,3 @@ void free_memory(int **values, t_solution **solution, int **degrees)
 	if (solution && *solution)
 		free(*solution);
 }
-
-void ft_error(char *str)
-{
-	ft_putstr(str);
-	ft_putendl(" I can't solve.\n");
-	exit(0);
-}

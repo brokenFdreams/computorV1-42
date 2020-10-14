@@ -5,5 +5,5 @@
 
 void resolution(int *values, t_solution *solution)
 {
-
+	ft_putendl("TODO there's resolution");
 }

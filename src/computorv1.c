@@ -58,8 +58,8 @@ static void start_progress(char *expression)
 	remove_all_spaces(expression);
 	validation(expression);
 	degrees = get_degrees(expression);
-	values = (int *) ft_memalloc(sizeof(int) * (degrees[1] + 1 - degrees[0]));
-	set_arguments(expression, values, degrees[0]);
+	values = (int*)ft_memalloc(sizeof(int) * (degrees[1] + 1 - degrees[0]));
+	set_arguments(expression, values, degrees[0], NULL);
 	write_reduced_form(values, degrees);
 	solution = (t_solution *) ft_memalloc(sizeof(t_solution));
 	resolution(values, solution);
