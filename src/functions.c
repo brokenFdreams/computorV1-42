@@ -32,8 +32,7 @@ void write_reduced_form(int *values, int *degrees)
 	int maxdegree;
 
 	ft_putstr("Reduced form: ");
-	i = 0;
-	degreecounter = degrees[0];
+	degreecounter = degrees[(i = 0)];
 	mindegree = 0;
 	maxdegree = 0;
 	while (degreecounter <= degrees[1])
@@ -44,14 +43,15 @@ void write_reduced_form(int *values, int *degrees)
 			maxdegree = degreecounter;
 		write_value(values[i++], degreecounter++, mindegree);
 	}
-	ft_putendl(" = 0");
-	ft_putstr("Polynomial degree: ");
+	ft_putstr(" = 0 \nPolynomial degree: ");
 	ft_putnbr(maxdegree);
 	ft_putendl("");
 	if (maxdegree > 2)
-		ft_error("The polynomial degree is stricly greater than 2.");
+		ft_error_f("The polynomial degree is stricly greater than 2.",
+			 &values, &degrees);
 	else if (mindegree < 0)
-		ft_error("Expression contains negative x degree.");
+		ft_error_f("Expression contains negative x degree.",
+			 &values, &degrees);
 }
 
 void remove_all_spaces(char *expression)
