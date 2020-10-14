@@ -26,13 +26,14 @@ void resolution_one(int *values)
 
 void resolution_two(int *values, t_solution *solution)
 {
-
+	if (values[0] == 0 && values[1] == 0)
+		ft_putendl("The solution is: \n0");
 }
 
 void resolution(int *values, int *degrees, t_solution *solution)
 {
 	if (degrees[1] == 0)
-		resolution_zero(values);
+		resolution_zero(values + degrees[0] * (-1));
 	else if (degrees[1] == 1)
 		resolution_one(values);
 	else

@@ -33,13 +33,13 @@ void write_reduced_form(int *values, int *degrees)
 
 	ft_putstr("Reduced form: ");
 	degreecounter = degrees[(i = 0)];
-	mindegree = 0;
+	mindegree = 2;
 	maxdegree = 0;
 	while (degreecounter <= degrees[1])
 	{
-		if (degreecounter < 0 && values[i] != 0)
-			mindegree = mindegree < degreecounter ? mindegree : degreecounter;
-		else if (values[i] != 0)
+		if (values[i] != 0 && mindegree > degreecounter)
+			mindegree = degreecounter;
+		if (values[i] != 0)
 			maxdegree = degreecounter;
 		write_value(values[i++], degreecounter++, mindegree);
 	}
