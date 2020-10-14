@@ -3,14 +3,14 @@
 //
 #include "computorv1.h"
 
-void resolution_zero(int *values)
+void resolution_zero(int value)
 {
-	if (values[0] == 0)
+	if (value == 0)
 		ft_putendl("Every number is solution.");
 	else
 	{
 		ft_putstr("There's no solution because ");
-		ft_putnbr(values[0]);
+		ft_putnbr(value);
 		ft_putendl(" is not equal 0.");
 	}
 }
@@ -28,14 +28,16 @@ void resolution_two(int *values, t_solution *solution)
 {
 	if (values[0] == 0 && values[1] == 0)
 		ft_putendl("The solution is: \n0");
+//	else if (values[0] != 0 && values[1] == 0)
+//		printf("The solution is: \n%f", ft_sq)
 }
 
 void resolution(int *values, int *degrees, t_solution *solution)
 {
 	if (degrees[1] == 0)
-		resolution_zero(values + degrees[0] * (-1));
+		resolution_zero(values[degrees[0] * (-1)]);
 	else if (degrees[1] == 1)
-		resolution_one(values);
+		resolution_one(values + degrees[0] * (-1));
 	else
-		resolution_two(values, solution);
+		resolution_two(values + degrees[0] * (-1), solution);
 }
