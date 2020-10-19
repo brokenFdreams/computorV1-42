@@ -21,7 +21,7 @@ void resolution_one(int *values)
 	if (values[0] == 0)
 		ft_putendl("0");
 	else
-		printf("%f\n", -1.0 * values[0] / (float) values[1]);
+		printf("%f\n", -1.0 * values[0] / (float) values[1]);//TODO
 }
 
 void positive_discriminant(int *values, int discriminant)
@@ -33,8 +33,8 @@ void positive_discriminant(int *values, int discriminant)
 	sqrtf = ft_sqrtf(-1 * discriminant) / (2.0 * values[2]);
 	printf("Discriminant is strictly negative, "
 		   "the two solutions are:\n");
-	printf("%lf\n", b + sqrtf);
-	printf("%lf\n", b - sqrtf);
+	printf("%lf\n", b + sqrtf);//TODO: fix printf with 0.500000 need to be 0.5
+	printf("%lf\n", b - sqrtf);//TODO
 }
 
 void negative_discriminant(int *values, int discriminant)
@@ -48,12 +48,12 @@ void negative_discriminant(int *values, int discriminant)
 		   "the two solutions are:\n");
 	if (sqrtf >= 0.0)
 	{
-		printf("%lf + %lf * i\n", b, sqrtf);
-		printf("%lf - %lf * i\n", b, sqrtf);
+		printf("%lf + %lf * i\n", b, sqrtf);//TODO
+		printf("%lf - %lf * i\n", b, sqrtf);//TODO
 	} else
 	{
-		printf("%lf - %lf * i\n", b, (-1.0) * sqrtf);
-		printf("%lf + %lf * i\n", b, (-1.0) * sqrtf);
+		printf("%lf - %lf * i\n", b, (-1.0) * sqrtf);//TODO
+		printf("%lf + %lf * i\n", b, (-1.0) * sqrtf);//TODO
 	}
 }
 
@@ -65,7 +65,7 @@ void resolution_two(int *values)
 				   4 * values[2] * values[0];
 	if (discriminant == 0)
 		printf("Discriminant is equal zero, the solution is:\n%f",
-			   (-1.0) * values[1] / (2.0 * values[2]));
+			   (-1.0) * values[1] / (2.0 * values[2]));//TODO
 	else if (discriminant > 0)
 		positive_discriminant(values, discriminant);
 	else
