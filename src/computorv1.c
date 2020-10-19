@@ -53,7 +53,6 @@ static void start_progress(char *expression)
 {
 	int *values;
 	int *degrees;
-	t_solution *solution;
 
 	remove_all_spaces(expression);
 	validation(expression);
@@ -64,9 +63,8 @@ static void start_progress(char *expression)
 	if (degrees[1] > 2)
 		ft_error_f("The polynomial degree is stricly greater than 2.",
 				   &values, &degrees);
-	solution = (t_solution *) ft_memalloc(sizeof(t_solution));
-	resolution(values, degrees, solution);
-	free_memory(&values, &solution, &degrees);
+	resolution(values, degrees);
+	free_memory(&values, &degrees);
 }
 
 int main(int argc, char **argv)

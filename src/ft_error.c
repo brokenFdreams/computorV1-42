@@ -19,9 +19,3 @@ void ft_error_f(char *str, int **values, int **degrees)
 		free(*degrees);
 	ft_error(str);
 }
-
-void ft_error_free_all(char *str, int **values, int **degrees, t_solution **solution)
-{
-	free_memory(values, solution, degrees);
-	ft_error(str);
-}

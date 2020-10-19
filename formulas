@@ -27,3 +27,8 @@ Formula: x = -b / 2*a
 D < 0
 There's two solution
 Formula: x = (-b +/- i*sqrt(4*a*c - b^2)) / 2*a
+
+"5 + 4 X + 3X^2 = X^2"
+
+5 + 4x + 2x^2 = 0
+16 - 40 =

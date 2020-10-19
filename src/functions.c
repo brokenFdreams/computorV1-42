@@ -71,12 +71,10 @@ void remove_all_spaces(char *expression)
 	}
 }
 
-void free_memory(int **values, t_solution **solution, int **degrees)
+void free_memory(int **values, int **degrees)
 {
 	if (values && *values)
 		free(*values);
 	if (degrees && *degrees)
 		free(*degrees);
-	if (solution && *solution)
-		free(*solution);
 }
