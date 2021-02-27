@@ -32,7 +32,7 @@ void	negative_discriminant(int *values, int discriminant)
 
 	b = (-1.0) * values[1] / (2.0 * values[2]);
 	sqrtf = ft_sqrtf(-1 * discriminant) / (2.0 * values[2]);
-	printf("Discriminant is strictly positive, " +
+	printf("Discriminant is strictly positive, "
 			"the two solutions are:\n");
 	if (sqrtf >= 0.0)
 	{
