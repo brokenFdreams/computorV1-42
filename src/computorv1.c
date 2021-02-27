@@ -1,12 +1,20 @@
-//
-// Created by Alya Karma on 25.06.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   computorv1.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fsinged <fsinged@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/27 15:21:25 by fsinged           #+#    #+#             */
+/*   Updated: 2021/02/27 15:52:24 by fsinged          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "computorv1.h"
 
-static void validation(char *expression)
+static void	validation(char *expression)
 {
-	int countequals;
+	int	countequals;
 
 	countequals = 0;
 	while (expression && *expression)
@@ -14,9 +22,9 @@ static void validation(char *expression)
 		if (*expression == '=')
 			countequals++;
 		else if (!(ft_isdigit(*expression)) &&
-				 *expression != '-' && *expression != '+' &&
-				 *expression != '^' && *expression != '*' &&
-				 *expression != 'x' && *expression != 'X')
+				*expression != '-' && *expression != '+' &&
+				*expression != '^' && *expression != '*' &&
+				*expression != 'x' && *expression != 'X')
 			ft_error("There's some unexpected sign in expression");
 		expression++;
 	}
@@ -24,13 +32,13 @@ static void validation(char *expression)
 		ft_error("There's more, then one =. I can't solve.");
 }
 
-static int *get_degrees(const char *expression)
+static int	*get_degrees(const char *expression)
 {
-	int i;
-	int *degrees;
-	int tmp;
+	int	i;
+	int	*degrees;
+	int	tmp;
 
-	degrees = (int *) ft_memalloc(sizeof(int) * 2);
+	degrees = (int *)ft_memalloc(sizeof(int) * 2);
 	degrees[0] = 0;
 	degrees[1] = 0;
 	i = -1;
@@ -46,13 +54,13 @@ static int *get_degrees(const char *expression)
 			degrees[1] = degrees[1] > tmp ? degrees[1] : tmp;
 		}
 	}
-	return degrees;
+	return (degrees);
 }
 
-static void start_progress(char *expression)
+static void	start_progress(char *expression)
 {
-	int *values;
-	int *degrees;
+	int	*values;
+	int	*degrees;
 
 	remove_all_spaces(expression);
 	validation(expression);
@@ -62,18 +70,19 @@ static void start_progress(char *expression)
 	write_reduced_form(values, degrees);
 	if (degrees[1] > 2)
 		ft_error_f("The polynomial degree is stricly greater than 2.",
-				   &values, &degrees);
+				&values, &degrees);
 	resolution(values, degrees);
 	free_memory(&values, &degrees);
 }
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	if (argc != 2 || ft_strequ(argv[1], "-u"))
 	{
 		ft_putendl("Usage: ./computor \"some reduce\"");
 		ft_putendl("Example: ./computor \"5*X^0+4*X^1+6*X^2=3*X^2\"");
-	} else
+	}
+	else
 		start_progress(argv[1]);
 	return (0);
 }

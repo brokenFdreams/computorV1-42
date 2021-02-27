@@ -1,14 +1,21 @@
-//
-// Created by Alya Karma on 26.06.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arguments.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fsinged <fsinged@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/27 15:21:13 by fsinged           #+#    #+#             */
+/*   Updated: 2021/02/27 15:50:18 by fsinged          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "computorv1.h"
 
-
-static int get_value(char *expression, int *start, int wasequal)
+static int	get_value(char *expression, int *start, int wasequal)
 {
-	int value;
-	int sign;
+	int	value;
+	int	sign;
 
 	sign = 1;
 	if (expression[*start] == '=')
@@ -36,8 +43,8 @@ static int get_value(char *expression, int *start, int wasequal)
 	return (value);
 }
 
-static int get_degree(const char *expression, int start, int end,
-					  int *v, int *d)
+static int	get_degree(const char *expression, int start, int end,
+					int *v, int *d)
 {
 	int degree;
 
@@ -57,7 +64,8 @@ static int get_degree(const char *expression, int start, int end,
 	{
 		degree = ft_atoi(expression + start);
 		start++;
-	} else
+	}
+	else
 		ft_error_f("There's no digit after '^'.", &v, &d);
 	while (ft_isdigit(expression[start]))
 		start++;
@@ -66,7 +74,7 @@ static int get_degree(const char *expression, int start, int end,
 	return (degree);
 }
 
-static int get_next_operator(const char *expression, int i, int *wasequal)
+static int	get_next_operator(const char *expression, int i, int *wasequal)
 {
 	if (expression[i] == '=')
 	{
@@ -80,18 +88,19 @@ static int get_next_operator(const char *expression, int i, int *wasequal)
 		return (0);
 	while ((expression[i] && expression[i] != '+' &&
 			expression[i] != '-' && expression[i] != '=') ||
-		   ((expression[i] == '-' || expression[i] == '+') &&
+			((expression[i] == '-' || expression[i] == '+') &&
 			expression[i - 1] == '^'))
 		i++;
 	return (i);
 }
 
-void set_arguments(char *expression, int *values, int mindegree, int *degrees)
+void		set_arguments(char *expression,
+					int *values, int mindegree, int *degrees)
 {
-	int start;
-	int end;
-	int wasequal;
-	int value;
+	int	start;
+	int	end;
+	int	wasequal;
+	int	value;
 
 	start = 0;
 	end = 0;
@@ -105,8 +114,8 @@ void set_arguments(char *expression, int *values, int mindegree, int *degrees)
 					&values,
 					&degrees);
 		value = get_value(expression, &start, wasequal);
-		values[get_degree(expression, start, end, values, degrees) - mindegree]
-				+= value;
+		values[get_degree(expression, start, end, values, degrees) -
+				mindegree] += value;
 		start = end;
 	}
 }

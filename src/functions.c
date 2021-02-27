@@ -1,10 +1,18 @@
-//
-// Created by voult on 11.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   functions.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fsinged <fsinged@student.21-school.ru>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/27 15:21:54 by fsinged           #+#    #+#             */
+/*   Updated: 2021/02/27 15:47:05 by fsinged          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "computorv1.h"
 
-static void write_value(int value, int degree, int mindegree)
+void	write_value(int value, int degree, int mindegree)
 {
 	if (value != 0)
 	{
@@ -14,7 +22,8 @@ static void write_value(int value, int degree, int mindegree)
 		{
 			ft_putstr(" - ");
 			ft_putnbr(value * -1);
-		} else
+		}
+		else
 		{
 			ft_putstr(" + ");
 			ft_putnbr(value);
@@ -24,7 +33,7 @@ static void write_value(int value, int degree, int mindegree)
 	}
 }
 
-void write_reduced_form(int *values, int *degrees)
+void	write_reduced_form(int *values, int *degrees)
 {
 	int i;
 	int degreecounter;
@@ -32,7 +41,8 @@ void write_reduced_form(int *values, int *degrees)
 	int maxdegree;
 
 	ft_putstr("Reduced form: ");
-	degreecounter = degrees[(i = 0)];
+	i = 0;
+	degreecounter = degrees[i];
 	mindegree = 2;
 	maxdegree = 0;
 	while (degreecounter <= degrees[1])
@@ -48,11 +58,11 @@ void write_reduced_form(int *values, int *degrees)
 	ft_putendl("");
 	if (mindegree < 0)
 		ft_error_f("Expression contains negative x degree.",
-			 &values, &degrees);
+				&values, &degrees);
 	degrees[1] = maxdegree;
 }
 
-void remove_all_spaces(char *expression)
+void	remove_all_spaces(char *expression)
 {
 	int i;
 	int j;
@@ -71,7 +81,7 @@ void remove_all_spaces(char *expression)
 	}
 }
 
-void free_memory(int **values, int **degrees)
+void	free_memory(int **values, int **degrees)
 {
 	if (values && *values)
 		free(*values);
