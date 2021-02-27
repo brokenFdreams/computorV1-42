@@ -44,10 +44,10 @@ static int	*get_degrees(const char *expression)
 	i = -1;
 	while (expression[++i])
 	{
-		if (expression[i - 1] == 'x' || expression[i - 1] == 'X')
+		if (expression[i] == 'x' || expression[i] == 'X')
 		{
-			if (expression[i] == '^')
-				tmp = ft_atoi(expression + i + 1);
+			if (expression[i + 1] && expression[i + 1] == '^')
+				tmp = ft_atoi(expression + i + 2);
 			else
 				tmp = 1;
 			degrees[0] = degrees[0] < tmp ? degrees[0] : tmp;
