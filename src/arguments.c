@@ -18,11 +18,8 @@ static int	get_value(char *expression, int *start, int wasequal)
 	int	sign;
 
 	sign = 1;
-	if (expression[*start] == '=')
-	{
+	if (expression[*start] == '=' && (sign = -1) == -1)
 		(*start)++;
-		sign = -1;
-	}
 	if (expression[*start] == '-' ||
 		(wasequal && expression[*start - 1] != '='))
 		sign *= -1;
@@ -48,8 +45,6 @@ static int	get_degree(const char *expression, int start, int end,
 {
 	int degree;
 
-	if (start == end)
-		return (0);
 	if (expression[start] == '*')
 		start++;
 	if (expression[start] != 'x' && expression[start] != 'X')
@@ -114,7 +109,10 @@ void		set_arguments(char *expression,
 					&values,
 					&degrees);
 		value = get_value(expression, &start, wasequal);
-		values[get_degree(expression, start, end, values, degrees) -
+		if (start == end)
+			values[0 - mindegree] += value;
+		else
+			values[get_degree(expression, start, end, values, degrees) -
 				mindegree] += value;
 		start = end;
 	}
