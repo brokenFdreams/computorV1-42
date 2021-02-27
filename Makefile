@@ -41,7 +41,7 @@ $(LIB):
 	@make -C $(LIBDIR)
 
 $(NAME):$(OBJS)
-	@gcc $(OBJS) $(MLX_FILES) $(LIB) -lm -o $(NAME)
+	@gcc $(OBJS) $(LIB) -lm -o $(NAME)
 
 clean:
 	@rm -rf $(OBJDIR)
