@@ -106,7 +106,7 @@ void		set_arguments(char *expression, int mindegree,
 		if (end == 0)
 			ft_error_f(
 					"There's no digit or 'x', when its expected.",
-					arguments);
+					&arguments);
 		value = get_value(expression, &start, wasequal);
 		if (start == end)
 			arguments->values[0 - mindegree] += value;
