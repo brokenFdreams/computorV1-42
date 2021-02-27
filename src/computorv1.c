@@ -59,20 +59,21 @@ static int	*get_degrees(const char *expression)
 
 static void	start_progress(char *expression)
 {
-	int	*values;
-	int	*degrees;
+	t_arguments	*arguments;
 
 	remove_all_spaces(expression);
 	validation(expression);
-	degrees = get_degrees(expression);
-	values = (int*)ft_memalloc(sizeof(int) * (degrees[1] + 1 - degrees[0]));
-	set_arguments(expression, values, degrees[0], degrees);
-	write_reduced_form(values, degrees);
-	if (degrees[1] > 2)
+	arguments = (t_arguments*)ft_memalloc(sizeof(t_arguments));
+	arguments->degrees = get_degrees(expression);
+	arguments->values = (int*)ft_memalloc(sizeof(int) *
+			(arguments->degrees[1] + 1 - arguments->degrees[0]));
+	set_arguments(expression, arguments->degrees[0], arguments);
+	write_reduced_form(arguments);
+	if (arguments->degrees[1] > 2)
 		ft_error_f("The polynomial degree is stricly greater than 2.",
-				&values, &degrees);
-	resolution(values, degrees);
-	free_memory(&values, &degrees);
+				&arguments);
+	resolution(arguments->values, arguments->degrees);
+	free_memory(&arguments);
 }
 
 int			main(int argc, char **argv)

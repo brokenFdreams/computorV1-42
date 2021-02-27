@@ -41,18 +41,18 @@ static int	get_value(char *expression, int *start, int wasequal)
 }
 
 static int	get_degree(const char *expression, int start, int end,
-					int *v, int *d)
+					t_arguments *arguments)
 {
 	int degree;
 
 	if (expression[start] == '*')
 		start++;
 	if (expression[start] != 'x' && expression[start] != 'X')
-		ft_error_f("There's no 'x' or 'X' when its expected.", &v, &d);
+		ft_error_f("There's no 'x' or 'X' when its expected.", &arguments);
 	if (++start == end)
 		return (1);
 	if (expression[start] != '^')
-		ft_error_f("There's unexpected characters after 'x'.", &v, &d);
+		ft_error_f("There's unexpected characters after 'x'.", &arguments);
 	if (ft_isdigit(expression[++start]))
 		degree = ft_atoi(expression + start);
 	else if (expression[start] == '-' && ft_isdigit(expression[start + 1]))
@@ -61,11 +61,11 @@ static int	get_degree(const char *expression, int start, int end,
 		start++;
 	}
 	else
-		ft_error_f("There's no digit after '^'.", &v, &d);
+		ft_error_f("There's no digit after '^'.", &arguments);
 	while (ft_isdigit(expression[start]))
 		start++;
 	if (start != end)
-		ft_error_f("Unexpected character after 'x' degree.", &v, &d);
+		ft_error_f("Unexpected character after 'x' degree.", &arguments);
 	return (degree);
 }
 
@@ -89,8 +89,8 @@ static int	get_next_operator(const char *expression, int i, int *wasequal)
 	return (i);
 }
 
-void		set_arguments(char *expression,
-					int *values, int mindegree, int *degrees)
+void		set_arguments(char *expression, int mindegree,
+					t_arguments *arguments)
 {
 	int	start;
 	int	end;
@@ -106,14 +106,13 @@ void		set_arguments(char *expression,
 		if (end == 0)
 			ft_error_f(
 					"There's no digit or 'x', when its expected.",
-					&values,
-					&degrees);
+					arguments);
 		value = get_value(expression, &start, wasequal);
 		if (start == end)
-			values[0 - mindegree] += value;
+			arguments->values[0 - mindegree] += value;
 		else
-			values[get_degree(expression, start, end, values, degrees) -
-				mindegree] += value;
+			arguments->values[get_degree(expression, start, end, arguments)
+			- mindegree] += value;
 		start = end;
 	}
 }

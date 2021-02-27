@@ -6,7 +6,7 @@
 /*   By: fsinged <fsinged@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 15:21:05 by fsinged           #+#    #+#             */
-/*   Updated: 2021/02/27 15:40:25 by fsinged          ###   ########.fr       */
+/*   Updated: 2021/02/27 16:41:32 by fsinged          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,23 @@
 # include "libft.h"
 # include <stdio.h>
 
-void	set_arguments(char *expression,
-			int *values, int mindegree, int *degrees);
-void	resolution(int *values, int *degrees);
-void	discriminant(int *values);
+typedef struct	s_arguments
+{
+	int			*values;
+	int			*degrees;
+}				t_arguments;
 
-void	remove_all_spaces(char *expression);
-void	write_reduced_form(int *values, int *degrees);
-void	free_memory(int **values, int **degrees);
-void	ft_error(char *str);
-void	ft_error_f(char *str, int **values, int **degrees);
+void			set_arguments(char *expression, int mindegree,
+					t_arguments *arguments);
+void			resolution(int *values, int *degrees);
+void			discriminant(int *values);
 
-double	ft_sqrtf(int x);
+void			remove_all_spaces(char *expression);
+void			write_reduced_form(t_arguments *arguments);
+void			free_memory(t_arguments **arguments);
+void			ft_error(char *str);
+void			ft_error_f(char *str, t_arguments **arguments);
+
+double			ft_sqrtf(int x);
 
 #endif

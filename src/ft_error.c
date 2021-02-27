@@ -19,11 +19,15 @@ void	ft_error(char *str)
 	exit(0);
 }
 
-void	ft_error_f(char *str, int **values, int **degrees)
+void	ft_error_f(char *str, t_arguments **arguments)
 {
-	if (values && *values)
-		free(*values);
-	if (degrees && *degrees)
-		free(*degrees);
+	if (arguments && *arguments)
+	{
+		if ((*arguments)->values)
+			free((*arguments)->values);
+		if ((*arguments)->degrees)
+			free((*arguments)->degrees);
+		free(*arguments);
+	}
 	ft_error(str);
 }

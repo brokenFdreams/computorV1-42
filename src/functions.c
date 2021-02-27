@@ -33,7 +33,7 @@ void	write_value(int value, int degree, int mindegree)
 	}
 }
 
-void	write_reduced_form(int *values, int *degrees)
+void	write_reduced_form(t_arguments *arguments)
 {
 	int i;
 	int degreecounter;
@@ -42,24 +42,24 @@ void	write_reduced_form(int *values, int *degrees)
 
 	ft_putstr("Reduced form: ");
 	i = 0;
-	degreecounter = degrees[i];
+	degreecounter = arguments->degrees[i];
 	mindegree = 2;
 	maxdegree = 0;
-	while (degreecounter <= degrees[1])
+	while (degreecounter <= arguments->degrees[1])
 	{
-		if (values[i] != 0 && mindegree > degreecounter)
+		if (arguments->values[i] != 0 && mindegree > degreecounter)
 			mindegree = degreecounter;
-		if (values[i] != 0)
+		if (arguments->values[i] != 0)
 			maxdegree = degreecounter;
-		write_value(values[i++], degreecounter++, mindegree);
+		write_value(arguments->values[i++], degreecounter++, mindegree);
 	}
 	ft_putstr(" = 0 \nPolynomial degree: ");
 	ft_putnbr(maxdegree);
 	ft_putendl("");
 	if (mindegree < 0)
 		ft_error_f("Expression contains negative x degree.",
-				&values, &degrees);
-	degrees[1] = maxdegree;
+				&arguments);
+	arguments->degrees[1] = maxdegree;
 }
 
 void	remove_all_spaces(char *expression)
@@ -81,10 +81,14 @@ void	remove_all_spaces(char *expression)
 	}
 }
 
-void	free_memory(int **values, int **degrees)
+void	free_memory(t_arguments **arguments)
 {
-	if (values && *values)
-		free(*values);
-	if (degrees && *degrees)
-		free(*degrees);
+	if (arguments && *arguments)
+	{
+		if ((*arguments)->values)
+			free((*arguments)->values);
+		if ((*arguments)->degrees)
+			free((*arguments)->degrees);
+		free(*arguments);
+	}
 }
