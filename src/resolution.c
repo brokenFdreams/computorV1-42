@@ -30,7 +30,7 @@ void	resolution_one(int *values)
 	if (values[0] == 0)
 		ft_putendl("0");
 	else
-		printf("%f\n", -1.0 * values[0] / (float)values[1]);//TODO
+		printf("%f\n", -1.0 * values[0] / (float)values[1]);
 }
 
 void	resolution(int *values, int *degrees)

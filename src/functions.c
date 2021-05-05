@@ -35,10 +35,10 @@ void	write_value(int value, int degree, int mindegree)
 
 void	write_reduced_form(t_arguments *arguments)
 {
-	int i;
-	int degreecounter;
-	int mindegree;
-	int maxdegree;
+	int	i;
+	int	degreecounter;
+	int	mindegree;
+	int	maxdegree;
 
 	ft_putstr("Reduced form: ");
 	i = 0;
@@ -58,14 +58,14 @@ void	write_reduced_form(t_arguments *arguments)
 	ft_putendl("");
 	if (mindegree < 0)
 		ft_error_f("Expression contains negative x degree.",
-				&arguments);
+			&arguments);
 	arguments->degrees[1] = maxdegree;
 }
 
 void	remove_all_spaces(char *expression)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (expression[++i])

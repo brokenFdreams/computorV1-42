@@ -17,11 +17,13 @@ static int	get_value(char *expression, int *start, int wasequal)
 	int	value;
 	int	sign;
 
-	sign = 1;
-	if (expression[*start] == '=' && (sign = -1) == -1)
+	sign = -1;
+	if (expression[*start] == '=')
 		(*start)++;
-	if (expression[*start] == '-' ||
-		(wasequal && expression[*start - 1] != '='))
+	else
+		sign = 1;
+	if (expression[*start] == '-'
+		|| (wasequal && expression[*start - 1] != '='))
 		sign *= -1;
 	if (expression[*start] == '-' || expression[*start] == '+')
 		(*start)++;
@@ -43,7 +45,7 @@ static int	get_value(char *expression, int *start, int wasequal)
 static int	get_degree(const char *expression, int start, int end,
 					t_arguments *arguments)
 {
-	int degree;
+	int	degree;
 
 	if (expression[start] == '*')
 		start++;
@@ -78,18 +80,18 @@ static int	get_next_operator(const char *expression, int i, int *wasequal)
 	}
 	if (expression[i] == '+' || expression[i] == '-')
 		i++;
-	if (!(ft_isdigit(expression[i])) && expression[i] != 'x' &&
-		expression[i] != 'X')
+	if (!(ft_isdigit(expression[i])) && expression[i] != 'x'
+		&& expression[i] != 'X')
 		return (0);
-	while ((expression[i] && expression[i] != '+' &&
-			expression[i] != '-' && expression[i] != '=') ||
-			((expression[i] == '-' || expression[i] == '+') &&
-			expression[i - 1] == '^'))
+	while ((expression[i] && expression[i] != '+'
+			&& expression[i] != '-' && expression[i] != '=')
+		|| ((expression[i] == '-' || expression[i] == '+')
+			&& expression[i - 1] == '^'))
 		i++;
 	return (i);
 }
 
-void		set_arguments(char *expression, int mindegree,
+void	set_arguments(char *expression, int mindegree,
 					t_arguments *arguments)
 {
 	int	start;
@@ -105,14 +107,14 @@ void		set_arguments(char *expression, int mindegree,
 		end = get_next_operator(expression, start, &wasequal);
 		if (end == 0)
 			ft_error_f(
-					"There's no digit or 'x', when its expected.",
-					&arguments);
+				"There's no digit or 'x', when its expected.",
+				&arguments);
 		value = get_value(expression, &start, wasequal);
 		if (start == end)
 			arguments->values[0 - mindegree] += value;
 		else
 			arguments->values[get_degree(expression, start, end, arguments)
-			- mindegree] += value;
+				- mindegree] += value;
 		start = end;
 	}
 }
