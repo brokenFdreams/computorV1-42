@@ -14,5 +14,7 @@
 
 int	ft_max(int a, int b)
 {
-	return (a < b ? b : a);
+	if (a < b)
+		return (b);
+	return (a);
 }

@@ -14,7 +14,7 @@
 
 static int	ft_itoa_length(uintmax_t nbr, int base)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (nbr == 0)
@@ -27,20 +27,24 @@ static int	ft_itoa_length(uintmax_t nbr, int base)
 	return (count);
 }
 
-char		*ft_itoa_base(uintmax_t nbr, int base)
+char	*ft_itoa_base(uintmax_t nbr, int base)
 {
 	char	*num;
 	int		rem;
 	int		size;
 
 	size = ft_itoa_length(nbr, base);
-	if (!(num = ft_strnew(size)))
+	num = ft_strnew(size);
+	if (!(num))
 		return (NULL);
 	size--;
 	while (size >= 0)
 	{
 		rem = nbr % base;
-		num[size--] = rem >= 10 ? rem + 'a' - 10 : rem + '0';
+		if (rem >= 10)
+			num[size--] = rem + 'a' - 10;
+		else
+			num[size--] = rem + '0';
 		nbr /= base;
 	}
 	return (num);

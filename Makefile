@@ -29,7 +29,7 @@ OBJDIR = ./OBJ/
 SRCDIR = ./src/
 
 
-all:obj $(LIB) $(MLX_LIB) $(NAME)
+all:fclean obj $(LIB) $(MLX_LIB) $(NAME)
 
 obj:
 	@mkdir $(OBJDIR)

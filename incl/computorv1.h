@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <stdio.h>
 
-typedef struct	s_arguments
+typedef struct s_arguments
 {
 	int			*values;
 	int			*degrees;

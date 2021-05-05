@@ -14,11 +14,11 @@
 
 char	*ft_strstr(const char *haystack, const char *needle)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	if (!*needle)
-		return ((char*)haystack);
+		return ((char *) haystack);
 	i = 0;
 	while (haystack[i])
 	{
@@ -33,7 +33,7 @@ char	*ft_strstr(const char *haystack, const char *needle)
 		}
 		i = i - j;
 		if (!needle[j])
-			return ((char*)(haystack + i));
+			return ((char *)(haystack + i));
 		i++;
 	}
 	return (NULL);
