@@ -12,16 +12,21 @@
 
 #include "computorv1.h"
 
+static int	get_sign(const char *expression, const int *start)
+{
+	if (expression[*start] == '=')
+		return (-1);
+	return (1);
+}
+
 static int	get_value(char *expression, int *start, int wasequal)
 {
 	int	value;
 	int	sign;
 
-	sign = -1;
+	sign = get_sign(expression, start);
 	if (expression[*start] == '=')
 		(*start)++;
-	else
-		sign = 1;
 	if (expression[*start] == '-'
 		|| (wasequal && expression[*start - 1] != '='))
 		sign *= -1;
