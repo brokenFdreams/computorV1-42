@@ -14,7 +14,7 @@
 
 static int	ft_count(int n)
 {
-	int count;
+	int	count;
 
 	count = 1;
 	if (n < 0)
@@ -30,7 +30,7 @@ static int	ft_count(int n)
 	return (count);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		len;

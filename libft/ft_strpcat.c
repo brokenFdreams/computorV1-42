@@ -14,7 +14,7 @@
 
 char	*ft_strpcat(char *s1, const char *s2, size_t n, size_t pos)
 {
-	size_t j;
+	size_t	j;
 
 	j = 0;
 	while (j < n)

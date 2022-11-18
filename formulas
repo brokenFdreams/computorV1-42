@@ -1,0 +1,29 @@
+There's can be n/0, -- or ++, == and others errors
+There's can be no =
+
+Degree 0:
+4*x^0-4*x^0 - any number is answer
+4*x^0-8*x^0 - there's no solution
+
+
+Degree 1:
+Always have solution
+1*x^0+7*x^1
+x = -1/7 (float type)
+
+
+Degree 2:
+Reduced form: c*x^0 +/- b*x^1 +/- a*x^2 = 0
+D (Discriminant) = b^2 - 4*a*c
+
+D > 0
+There's two solution
+Formula: x = (-b +/- sqrt(D)) / 2*a
+
+D = 0
+There's one solution
+Formula: x = -b / 2*a
+
+D < 0
+There's two solution
+Formula: x = (-b +/- i*sqrt(4*a*c - b^2)) / 2*a
